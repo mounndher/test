@@ -76,7 +76,7 @@ export default function Header() {
 
         <nav
           aria-label="Navigation principale"
-          className="hidden items-center gap-6 lg:flex xl:gap-8"
+          className="hidden items-center gap-6 xl:flex xl:gap-8"
         >
           {NAV.map((item) => {
             const isActive = !item.href.includes("#") && pathname === item.href;
@@ -103,7 +103,7 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            className="flex h-11 w-11 items-center justify-center border border-ink/20 text-navy transition-colors hover:border-ink lg:hidden"
+            className="flex h-11 w-11 items-center justify-center border border-ink/20 text-navy transition-colors hover:border-ink xl:hidden"
           >
             {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
           </button>
@@ -119,7 +119,7 @@ export default function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-rule bg-ivory lg:hidden"
+            className="max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-rule bg-ivory xl:hidden"
           >
             <nav aria-label="Navigation mobile" className="px-5 pb-10 pt-2 sm:px-8">
               <ul>

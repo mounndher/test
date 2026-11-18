@@ -147,9 +147,8 @@ export default function Page() {
               </p>
               <BookingCta
                 tone="navy"
-                secondaryHref="/contact#contact-form"
+                showSecondary={false}
                 showPhone
-                notes
                 className="shrink-0 lg:max-w-sm"
               />
             </div>

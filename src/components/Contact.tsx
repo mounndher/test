@@ -1,12 +1,14 @@
 import AuditComment from "@/components/AuditComment";
 import BookingCta from "@/components/BookingCta";
 import ContactForm from "@/components/ContactForm";
+import OfficeMap from "@/components/OfficeMap";
+import ReviewBadge from "@/components/ReviewBadge";
 import { CONTACT, SITE } from "@/content/site";
 import { Reveal, Section } from "@/components/ui";
 
 export default function Contact() {
   return (
-    <Section id="contact" index="07" label="Contact">
+    <Section id="contact" index="08" label="Contact">
       <div className="grid grid-cols-12 gap-x-6 gap-y-14">
         {/* Left — verified coordinates & consultation options */}
         <div className="col-span-12 lg:col-span-4">
@@ -68,6 +70,10 @@ export default function Contact() {
               </div>
             </dl>
           </Reveal>
+
+          <Reveal delay={0.16}>
+            <ReviewBadge />
+          </Reveal>
         </div>
 
         {/* Right — direct booking card, then the form */}
@@ -81,7 +87,7 @@ export default function Contact() {
               <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-ink/80">
                 Premier rendez-vous au cabinet (Paris), en visioconférence ou par téléphone.
               </p>
-              <BookingCta className="mt-5" showSecondary={false} notes />
+              <BookingCta className="mt-5" showSecondary={false} showPhone />
             </div>
           </Reveal>
           <Reveal delay={0.12} className="mt-8">
@@ -89,6 +95,10 @@ export default function Contact() {
           </Reveal>
         </div>
       </div>
+
+      <Reveal delay={0.1}>
+        <OfficeMap />
+      </Reveal>
     </Section>
   );
 }

@@ -57,7 +57,7 @@ export const CTA = {
   /** Secondary action: write first via the contact form. */
   write: "Exposer ma situation",
   submit: "Envoyer ma demande",
-  reassurance: "Réponse sous 24 h ouvrées. Échange confidentiel.",
+  // TODO [À CONFIRMER] : délai de réponse promis au public (aucune mention de délai dans les textes publiés).
 } as const;
 
 /**
@@ -69,7 +69,9 @@ export const NAV = [
   { label: "Expertises", href: "/#expertises" },
   { label: "Approche", href: "/#approche" },
   { label: "Le Cabinet", href: "/le-cabinet" },
+  { label: "Publications", href: "/publications" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const CONTACT_SUBJECTS = [
@@ -212,6 +214,7 @@ export const WHY = {
     {
       index: "03",
       title: "Transparence",
+          // TODO [À CONFIRMER] : engagement sur l'information des honoraires convenus à chaque étape.
       body: "À chaque étape, une information lisible sur l’état du dossier, les risques identifiés et les honoraires convenus.",
     },
     {
@@ -261,6 +264,7 @@ export const ABOUT = {
 export const HOME_FAQS = [
   {
     q: "Quels sont les délais et le coût d’une procédure d’injonction de payer ?",
+        // TODO [À CONFIRMER] : mention des honoraires dans ce texte (à valider avec l'avocat).
     a: "La requête est déposée sur pièces pour les créances certaines, liquides et exigibles ; s’ajoutent les honoraires convenus avec le cabinet et les frais de commissaire de justice pour signifier l’ordonnance. Les délais varient selon la juridiction et la complétude du dossier. Le débiteur dispose d’un mois à compter de la signification pour former opposition.",
   },
   {
@@ -269,6 +273,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Combien coûte l’intervention d’un avocat en contentieux des affaires ?",
+  // TODO [À CONFIRMER] : formulation sur les honoraires (libres, fixés avant diligence, convention écrite) à valider avec l'avocat.
     a: "Les honoraires sont libres et fixés avant toute diligence, par une convention écrite. Selon le dossier, ils peuvent être calculés au temps passé ou par forfait d’étape, complétés le cas échéant par un honoraire de résultat.",
   },
   {
@@ -277,6 +282,7 @@ export const HOME_FAQS = [
   },
   {
     q: "Comment se déroule le premier rendez-vous ?",
+        // TODO [À CONFIRMER] : mention des honoraires dans ce texte (à valider avec l'avocat).
     a: "Après un bref exposé des faits et la vérification de l’absence de conflit d’intérêts, le premier rendez-vous se tient au cabinet (Paris 16e), en visioconférence ou par téléphone. Il permet d’analyser les pièces essentielles, d’évaluer les options et de présenter les modalités d’honoraires avant toute intervention.",
   },
 ] as const;
@@ -295,6 +301,7 @@ export const FIRST_CONTACT = {
     },
     {
       title: "Premier rendez-vous",
+      // TODO [À CONFIRMER] : mention de la présentation des honoraires au premier rendez-vous.
       body: "Au cabinet (Paris), en visio ou par téléphone, avec présentation des modalités d’honoraires.",
     },
   ],
@@ -309,6 +316,19 @@ export const CONTACT = {
   formNote:
     "Votre demande est traitée avec discrétion et dans le respect du secret professionnel. L’envoi de ce formulaire ne crée pas, en soi, de relation avocat-client : celle-ci suppose l’acceptation expresse du dossier par le cabinet, après vérification notamment de l’absence de conflit d’intérêts.",
   subjects: CONTACT_SUBJECTS,
+} as const;
+
+/**
+ * Google Reviews proof shown near the contact coordinates.
+ * TODO [À CONFIRMER] : existence de la fiche d'établissement Google, exactitude de la note
+ * et du nombre d'avis, et compatibilité de l'affichage d'une note avec les règles de
+ * publicité de la profession (témoignages de clients). Ne pas publier sans validation.
+ */
+export const REVIEWS = {
+  rating: "5,0",
+  count: 21,
+  /** Replace with the actual Google Business Profile URL (place link) once confirmed. */
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Blexmann%20Avocats%2053%20avenue%20Victor%20Hugo%2075116%20Paris",
 } as const;
 
 export const FOOTER = {
@@ -329,7 +349,6 @@ export const FOOTER = {
     {
       title: "Informations",
       items: [
-        { label: "Publications externes", href: "/publications" },
         { label: "Questions fréquentes", href: "/#faq" },
         { label: "Mentions légales", href: "/mentions-legales" },
         { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },

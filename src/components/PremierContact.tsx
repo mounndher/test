@@ -5,7 +5,7 @@ import { Reveal, Section } from "@/components/ui";
 /** Simple 3-step block reducing the perceived effort of a first contact. */
 export default function PremierContact() {
   return (
-    <Section id="premier-contact" index="06" label={FIRST_CONTACT.eyebrow} tone="paper">
+    <Section id="premier-contact" index="07" label={FIRST_CONTACT.eyebrow} tone="paper">
       <Reveal>
         <h2 id="premier-contact-title" className="display-lg max-w-[22ch] font-display text-navy">
           {FIRST_CONTACT.title}
@@ -34,7 +34,7 @@ export default function PremierContact() {
       </ol>
 
       <Reveal delay={0.1} className="mt-14">
-        <BookingCta secondaryHref="#contact" showPhone notes />
+        <BookingCta showSecondary={false} showPhone />
       </Reveal>
     </Section>
   );

@@ -34,6 +34,7 @@ const FAQS = [
   },
   {
     q: "Comment sont encadrés l’acceptation d’un dossier et les honoraires ?",
+        // TODO [À CONFIRMER] : formulation sur les honoraires (présentée avant toute intervention) à valider avec l'avocat.
     a: "Une relation avocat-client ne s’établit qu’après l’acceptation expresse du dossier par le cabinet, précédée notamment de la vérification de l’absence de conflit d’intérêts. Les modalités d’honoraires sont présentées avant toute intervention et formalisées par une convention écrite.",
   },
 ] as const;
@@ -99,6 +100,7 @@ export default function Page() {
                 Avant toute procédure, le cabinet fait porter son analyse sur le fondement
                 juridique, la qualité des preuves disponibles, les délais applicables et les
                 conséquences concrètes pour l&rsquo;exploitation. Les modalités d&rsquo;honoraires
+              {/* TODO [À CONFIRMER] : mention des modalités d'honoraires présentées avant toute intervention. */}
                 sont présentées avant toute intervention.
               </p>
 
@@ -189,9 +191,8 @@ export default function Page() {
               </div>
               <BookingCta
                 tone="navy"
-                secondaryHref="/contact#contact-form"
+                showSecondary={false}
                 showPhone
-                notes
                 className="shrink-0 lg:max-w-sm"
               />
             </div>

@@ -160,6 +160,7 @@ export default function MentionsLegalesPage() {
       </p>
 
       <h2>10. Honoraires</h2>
+      {/* TODO [À CONFIRMER] : formulation sur les honoraires (présentation avant intervention, convention écrite) à valider avec l'avocat. */}
       <p>
         Les modalités d&rsquo;honoraires sont présentées avant toute intervention et font
         l&rsquo;objet d&rsquo;une convention d&rsquo;honoraires écrite conformément aux règles de la

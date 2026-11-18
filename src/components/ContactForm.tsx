@@ -17,8 +17,8 @@ const EMPTY: ContactFields = {
   consent: false,
 };
 
-const SUCCESS_MESSAGE =
-  "Merci, votre demande a bien été transmise au cabinet. Une réponse vous sera adressée sous 24 h ouvrées.";
+// TODO [À CONFIRMER] : délai de réponse promis au client (aucun délai publié sans confirmation).
+const SUCCESS_MESSAGE = "Merci, votre demande a bien été transmise au cabinet.";
 const FALLBACK = `Vous pouvez écrire directement à ${SITE.email} ou appeler le ${SITE.phone}.`;
 const GENERIC_ERROR = `Votre demande n’a pas pu être envoyée. Merci de réessayer dans un instant. ${FALLBACK}`;
 
@@ -458,10 +458,11 @@ export default function ContactForm({ formId = "f" }: { formId?: string }) {
       </div>
 
       <div className="mt-6 flex flex-col gap-5 border-t border-rule pt-7 sm:flex-row sm:items-start sm:justify-between">
-        <p id={`${formId}-form-note`} className="max-w-[44ch] text-xs leading-relaxed text-mute">
+          <p id={`${formId}-form-note`} className="max-w-[44ch] text-xs leading-relaxed text-mute">
           {CONTACT.formNote}
         </p>
         <div className="flex shrink-0 flex-col gap-3 sm:items-end">
+          {/* TODO [À CONFIRMER] : ligne de réassurance sous le bouton (délai de réponse) — retirée tant que non confirmée. */}
           <button
             type="submit"
             disabled={submitting}
@@ -470,7 +471,6 @@ export default function ContactForm({ formId = "f" }: { formId?: string }) {
             <Send size={15} strokeWidth={1.75} aria-hidden="true" />
             {submitting ? "Envoi en cours…" : CTA.submit}
           </button>
-          <p className="text-xs text-mute sm:text-right">{CTA.reassurance}</p>
         </div>
       </div>
 

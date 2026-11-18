@@ -33,6 +33,27 @@ const DATA: ExpertisePageData = {
     "Détermination du droit applicable : articulation entre la loi choisie par les parties, les règlements européens, les conventions internationales (telles que la Convention de Vienne sur la vente internationale de marchandises) et les lois de police.",
     "Circulation et exécution des décisions : reconnaissance et exécution en France de jugements étrangers ou de sentences arbitrales (exequatur), et anticipation de l’exécution à l’étranger d’une décision française.",
   ],
+  // TODO [À CONFIRMER] : intitulés de cadres juridiques cités en titre (Convention de Vienne,
+  // Bruxelles I bis, Convention de New York) — à valider avec Maître Blexmann avant publication.
+  scenariosTitle: "Quatre situations fréquentes",
+  scenarios: [
+    {
+      title: "Contrat avec un fournisseur étranger (Convention de Vienne)",
+      body: "Impayé, retard de livraison ou marchandise non conforme : le cabinet qualifie le contrat, vérifie la clause de litige et détermine devant quelle juridiction agir avant toute mise en demeure.",
+    },
+    {
+      title: "Associé ou actionnaire étranger au capital",
+      body: "Blocage de gouvernance ou sortie contestée avec un associé établi hors de France : les statuts et le pacte restent le point de départ, la nationalité de l’associé n’efface pas les voies sociétaires habituelles.",
+    },
+    {
+      title: "Exécution d’une décision à l’étranger, ou d’une décision étrangère en France (exequatur)",
+      body: "Avant toute procédure, le cabinet vérifie les conditions de reconnaissance applicables, le pays de situation des actifs et les formalités (traductions, exequatur) requises pour rendre la décision effective.",
+    },
+    {
+      title: "Clause compromissoire et arbitrage",
+      body: "Un contrat international peut imposer l’arbitrage : le cabinet examine la validité de la clause, la juridiction compétente pour l’incident et la voie d’exécution de la sentence.",
+    },
+  ],
   enjeuxTitle: "Enjeux procéduraux et points d’analyse dès l’origine",
   enjeuxParagraphs: [
     "Engager une action devant une juridiction incompétente ou obtenir un jugement difficilement exécutable dans le pays où se situent les actifs du débiteur entraîne une perte de temps et des coûts considérables (significations internationales, traductions assermentées, débats préliminaires de compétence).",
@@ -65,6 +86,18 @@ const DATA: ExpertisePageData = {
     {
       q: "Pourquoi vérifier la présence d’une clause d’arbitrage avant d’assigner ?",
       a: "En vertu du principe dit de « compétence-compétence » (art. 1448 du Code de procédure civile), lorsqu’un litige relevant d’une convention d’arbitrage est porté devant une juridiction étatique française, celle-ci doit se déclarer incompétente si une partie le soulève, sauf si le tribunal arbitral n’est pas encore saisi et si la convention d’arbitrage est manifestement nulle ou manifestement inapplicable.",
+    },
+    {
+      q: "Un différend avec un fournisseur étranger peut-il être traité en France ?",
+      a: "Cela dépend de la clause de litige du contrat, du lieu d’exécution et des règles de compétence applicables. Le cabinet vérifie ces éléments avant toute saisine afin d’éviter une contestation préalable de compétence qui ferait perdre un temps précieux.",
+    },
+    {
+      q: "Que se passe-t-il lorsqu’un associé étranger bloque une décision sociale ?",
+      a: "L’analyse porte sur les statuts, le pacte d’associés et les règles de majorité, indépendamment de la nationalité de l’associé. Le cabinet recherche d’abord une issue négociée, puis engage les voies sociétaires appropriées si le blocage persiste.",
+    },
+    {
+      q: "Comment faire reconnaître une décision étrangère en France ?",
+      a: "La reconnaissance dépend du pays d’origine, des conventions applicables et des conditions posées par la loi française. Le cabinet instruit la demande en vérifiant ces conditions, les traductions assermentées et les formalités de procédure avant de saisir le juge compétent.",
     },
   ],
   related: [

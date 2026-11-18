@@ -111,13 +111,7 @@ export default function Approche() {
             <p className="max-w-[44ch] font-display text-lg italic leading-snug text-ivory/85">
               {WHY.closing}
             </p>
-            <BookingCta
-              tone="navy"
-              secondaryHref="#contact"
-              showPhone
-              notes
-              className="mt-6"
-            />
+            <BookingCta tone="navy" showSecondary={false} showPhone className="mt-6" />
           </div>
         </Reveal>
       </div>

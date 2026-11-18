@@ -8,6 +8,7 @@ import QuandFaireAppel from "@/components/QuandFaireAppel";
 import Approche from "@/components/Approche";
 import Cabinet from "@/components/Cabinet";
 import HomeFaq from "@/components/HomeFaq";
+import HomePublications from "@/components/HomePublications";
 import PremierContact from "@/components/PremierContact";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -37,6 +38,7 @@ export default function HomePage() {
         <Approche />
         <Cabinet />
         <HomeFaq />
+        <HomePublications />
         <PremierContact />
         <Contact />
       </main>

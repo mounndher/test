@@ -104,6 +104,7 @@ export default function PolitiqueConfidentialitePage() {
         convenues directement avec le cabinet lors du premier échange.
       </p>
 
+      {/* TODO [À CONFIRMER] : région d'hébergement des données de réservation Cal.com et accord de sous-traitance (DPA) à confirmer avec l'avocat. */}
       <h2>3 bis. Données de réservation en ligne (Cal.com)</h2>
       <p>
         Lorsqu&rsquo;un visiteur réserve un premier rendez-vous via le module Cal.com, les
@@ -157,8 +158,8 @@ export default function PolitiqueConfidentialitePage() {
         pays concernés par d’éventuels transferts à confirmer&nbsp;; garanties et accords de
         sous-traitance à confirmer.]
       </p>
-      {/* TODO: Verify with lawyer: actual Cal.com hosting locations, transfers, retention periods and processing agreement */}
-      <AuditComment text="TODO: Verify with lawyer: actual Cal.com hosting locations, transfers, retention periods and processing agreement" />
+      {/* TODO [À CONFIRMER] : Cal.com — région d'hébergement, transferts hors UE, durées de conservation et accord de sous-traitance (DPA). */}
+      <AuditComment text="TODO [À CONFIRMER] : Cal.com — région d'hébergement, transferts hors UE, durées de conservation et accord de sous-traitance (DPA)." />
 
       <h2>4. Finalités, bases légales et secret professionnel</h2>
       <p>

@@ -19,10 +19,11 @@ export default function Hero() {
           </p>
 
           <h1 id="hero-title" className="display-xl mt-7 font-display text-navy">
-            Avocat en contentieux des affaires à Paris.
-            <br />
-            Défendre vos intérêts, <span className="italic">maîtriser</span> vos enjeux.
+            Avocat en contentieux des affaires à Paris
           </h1>
+          <p className="display-md mt-4 max-w-[24ch] font-display italic text-navy">
+            Défendre vos intérêts, maîtriser vos enjeux.
+          </p>
 
           <div aria-hidden="true" className="hero-rule mt-9 h-px w-full bg-gold" />
 
@@ -37,12 +38,8 @@ export default function Hero() {
 
           {/* TODO: Verify with lawyer: Phone */}
           <AuditComment text="TODO: Verify with lawyer: Phone" />
-          <BookingCta
-            className="mt-10"
-            secondaryHref="#contact"
-            showPhone
-            notes
-          />
+          {/* Unique placement of the booking consent + sensitive-information note. */}
+          <BookingCta className="mt-10" showSecondary={false} showPhone notes />
         </div>
 
         {/* Right — the navy buckram cover, with the vertical spine */}

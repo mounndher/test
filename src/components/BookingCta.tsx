@@ -226,8 +226,7 @@ export default function BookingCta({
               className={`link-underline ${navy ? "text-ivory" : "text-navy"}`}
             >
               politique de confidentialité
-            </Link>
-            .
+            </Link>.
           </p>
           <p>Merci de ne communiquer aucune information sensible lors de la réservation.</p>
         </div>

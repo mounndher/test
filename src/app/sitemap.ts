@@ -17,6 +17,8 @@ const PATHS: { path: string; changeFrequency: "monthly" | "yearly"; priority: nu
   { path: "/procedures-d-urgence", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contentieux-international", changeFrequency: "monthly", priority: 0.8 },
   { path: "/le-cabinet", changeFrequency: "yearly", priority: 0.7 },
+  // Listed so the sitemap covers every route; the page itself stays noindex (secondary page).
+  { path: "/publications", changeFrequency: "yearly", priority: 0.5 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.7 },
   { path: "/mentions-legales", changeFrequency: "yearly", priority: 0.3 },
   { path: "/politique-de-confidentialite", changeFrequency: "yearly", priority: 0.3 },

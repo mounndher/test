@@ -26,6 +26,9 @@ export type ExpertisePageData = {
   faqs: Faq[];
   related: { label: string; href: string }[];
   contactSubject: ContactSubject;
+  /** Optional concrete-case block (only used on the international page). */
+  scenariosTitle?: string;
+  scenarios?: { title: string; body: string }[];
 };
 
 const APPOINTMENT_LINE =
@@ -57,8 +60,6 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
     areaServed: { "@type": "City", name: "Paris" },
   };
 
-  const contactHref = `/contact?sujet=${encodeURIComponent(data.contactSubject)}#contact-form`;
-
   return (
     <>
       <Header />
@@ -78,7 +79,7 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
             <p className="max-w-[52ch] font-display text-[1.25rem] leading-snug text-navy">
               {APPOINTMENT_LINE}
             </p>
-            <BookingCta className="mt-5" secondaryHref={contactHref} showPhone notes />
+            <BookingCta className="mt-5" showSecondary={false} showPhone />
           </div>
 
           <div className="mt-10 grid grid-cols-12 gap-x-6">
@@ -106,6 +107,26 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
                   </li>
                 ))}
               </ul>
+
+              {data.scenarios && data.scenarios.length > 0 && (
+                <>
+                  <h2 className="mt-14 font-display text-[1.6rem] leading-snug text-navy">
+                    {data.scenariosTitle}
+                  </h2>
+                  <ol className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+                    {data.scenarios.map((scenario) => (
+                      <li key={scenario.title} className="border-t border-rule pt-5">
+                        <h3 className="font-display text-[1.15rem] leading-snug text-navy">
+                          {scenario.title}
+                        </h3>
+                        <p className="mt-2 text-[1rem] leading-[1.6] text-ink/85">
+                          {scenario.body}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                </>
+              )}
 
               <h2 className="mt-14 font-display text-[1.6rem] leading-snug text-navy">
                 {data.enjeuxTitle}
@@ -176,11 +197,7 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
                     {SITE.phone}
                   </a>
                 </p>
-                <BookingCta
-                  layout="stack"
-                  secondaryHref={contactHref}
-                  className="mt-5"
-                />
+                <BookingCta layout="stack" showSecondary={false} className="mt-5" />
               </div>
             </aside>
           </div>
@@ -207,9 +224,8 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
                 <BookingCta
                   tone="navy"
                   layout="stack"
-                  secondaryHref={contactHref}
+                  showSecondary={false}
                   showPhone
-                  notes
                   className="mt-4"
                 />
               </div>

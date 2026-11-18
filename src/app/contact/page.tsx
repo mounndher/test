@@ -24,7 +24,7 @@ export const metadata: Metadata = buildPageMetadata({
 const FAQS = [
   {
     q: "Comment fonctionne l’envoi de ma demande ?",
-    a: "Le formulaire transmet votre demande directement au cabinet, par courriel, sans ouvrir votre messagerie. Merci de ne communiquer aucune pièce sensible lors de ce premier envoi. Une réponse vous est adressée sous 24 h ouvrées.",
+    a: "Le formulaire transmet votre demande directement au cabinet, par courriel, sans ouvrir votre messagerie. Merci de ne communiquer aucune pièce sensible lors de ce premier envoi.",
   },
   {
     q: "Quelles modalités de rendez-vous sont proposées ?",
