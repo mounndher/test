@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AuditComment from "@/components/AuditComment";
-import { BookingActions } from "@/components/BookingCta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqList from "@/components/FaqList";
+import BookingCta from "@/components/BookingCta";
 import JsonLd from "@/components/JsonLd";
 import { ABOUT, EXPERTISES, MARD, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
@@ -38,14 +38,6 @@ const FAQS = [
   },
 ] as const;
 
-const profileJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "@id": `${SITE.url}${PATH}#profile`,
-  url: `${SITE.url}${PATH}`,
-  mainEntity: { "@id": `${SITE.url}/#founder` },
-};
-
 export default function Page() {
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -57,14 +49,24 @@ export default function Page() {
     })),
   };
 
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["Person", "Attorney"],
+    "@id": `${SITE.url}/#founder`,
+    name: "Pierre Blexmann",
+    jobTitle: "Avocat",
+    url: `${SITE.url}/le-cabinet`,
+    worksFor: { "@id": `${SITE.url}/#organization` },
+  };
+
   return (
     <>
       <Header />
       <main id="main" className="bg-ivory">
         <JsonLd data={faqJsonLd} />
-        <JsonLd data={profileJsonLd} />
+        <JsonLd data={personJsonLd} />
         <article className="mx-auto w-full max-w-[92rem] px-5 pb-24 pt-10 sm:px-8 lg:px-12 lg:pb-32 lg:pt-14">
-          <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "Le Cabinet" }]} currentPath={PATH} />
+          <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "Le Cabinet" }]} />
           <p className="eyebrow mt-10 text-bronze">{ABOUT.eyebrow}</p>
           <h1 className="display-lg mt-6 max-w-[22ch] font-display text-navy">{ABOUT.name}</h1>
           <div aria-hidden="true" className="mt-8 h-px w-full max-w-[28rem] bg-gold" />
@@ -176,7 +178,7 @@ export default function Page() {
           </div>
 
           <div className="mt-20 bg-navy px-6 py-12 sm:px-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="max-w-[42ch] font-display text-2xl leading-snug text-ivory">
                   Quelques lignes sur les faits suffisent pour solliciter un premier rendez-vous.
@@ -185,7 +187,13 @@ export default function Page() {
                   {SITE.confidentialityNotice}
                 </p>
               </div>
-              <BookingActions contactHref="/contact#contact-form" tone="dark" />
+              <BookingCta
+                tone="navy"
+                secondaryHref="/contact#contact-form"
+                showPhone
+                notes
+                className="shrink-0 lg:max-w-sm"
+              />
             </div>
           </div>
         </article>

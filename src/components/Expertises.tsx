@@ -57,10 +57,10 @@ export default function Expertises() {
                 lignes.
               </p>
               <a
-                href="#contact-form"
-                className="eyebrow group inline-flex w-fit items-center gap-3 border border-ivory/40 px-7 py-4 text-ivory transition-colors duration-300 hover:border-ivory hover:bg-ivory/10"
+                href="#contact"
+                className="eyebrow group inline-flex w-fit items-center gap-3 bg-ivory px-7 py-4 text-navy transition-colors duration-300 hover:bg-goldsoft"
               >
-                {CTA.secondary}
+                {CTA.write}
                 <span
                   aria-hidden="true"
                   className="transition-transform duration-300 group-hover:translate-x-1"

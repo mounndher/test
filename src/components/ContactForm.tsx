@@ -170,11 +170,11 @@ export default function ContactForm({ formId = "f" }: { formId?: string }) {
       aria-describedby={`${formId}-form-note`}
       className="scroll-mt-24 bg-paper/60 p-6 sm:p-9"
     >
-      <p className="eyebrow text-bronze">{CTA.secondary}</p>
+      <p className="eyebrow text-bronze">{CTA.write}</p>
       <p className="measure mt-3 text-sm leading-relaxed text-mute">{CONTACT.formHelper}</p>
 
       {/* Honeypot: invisible to people, tempting to bots. */}
-      <div hidden aria-hidden="true">
+      <div aria-hidden="true" className="sr-only">
         <label htmlFor={`${formId}-siteweb`}>Ne pas remplir ce champ</label>
         <input
           id={`${formId}-siteweb`}
@@ -403,15 +403,15 @@ export default function ContactForm({ formId = "f" }: { formId?: string }) {
               className="mt-1 h-4 w-4 shrink-0 accent-[#101D2B]"
             />
             <label htmlFor={`${formId}-consent`} className="text-sm leading-relaxed text-ink/85">
-              J&apos;ai pris connaissance de la{" "}
+              J&rsquo;ai pris connaissance de la{" "}
               <Link
                 href="/politique-de-confidentialite"
                 className="link-underline text-navy underline-offset-2"
               >
                 politique de confidentialité
               </Link>{" "}
-              et j&apos;accepte que les informations transmises via ce formulaire soient traitées par
-              le cabinet pour l&apos;examen de ma demande.
+              et j&rsquo;accepte que les informations transmises via ce formulaire soient traitées
+              par le cabinet pour l&rsquo;examen de ma demande.
             </label>
           </div>
           {err("consent") && (

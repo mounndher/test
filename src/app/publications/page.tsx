@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AuditComment from "@/components/AuditComment";
-import { BookingActions } from "@/components/BookingCta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { EXTERNAL_PUBLICATIONS } from "@/content/articles";
+import BookingCta from "@/components/BookingCta";
 import { EXPERTISES, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -141,11 +141,17 @@ export default function Page() {
           </section>
 
           <div className="mt-20 bg-navy px-6 py-12 sm:px-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="max-w-[42ch] font-display text-2xl leading-snug text-ivory">
                 Confronté à un litige commercial ou sociétaire&nbsp;? Exposez les faits au cabinet.
               </p>
-              <BookingActions contactHref="/contact#contact-form" tone="dark" />
+              <BookingCta
+                tone="navy"
+                secondaryHref="/contact#contact-form"
+                showPhone
+                notes
+                className="shrink-0 lg:max-w-sm"
+              />
             </div>
           </div>
         </article>

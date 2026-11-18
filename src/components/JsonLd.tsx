@@ -1,3 +1,7 @@
+/**
+ * Small server helper for Schema.org structured data.
+ * Escapes "<" so the JSON can never break out of the <script> tag.
+ */
 export default function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script

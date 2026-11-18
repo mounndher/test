@@ -1,11 +1,12 @@
 import Image from "next/image";
 import AuditComment from "@/components/AuditComment";
-import { BookingActions } from "@/components/BookingCta";
-import { CTA, SITE } from "@/content/site";
+import BookingCta from "@/components/BookingCta";
+import { SITE } from "@/content/site";
 
 /**
  * Server component, no entrance animation on the text: the H1 and the image are the
  * LCP candidates and must be painted immediately (only the gold rule draws itself, in CSS).
+ * The Cal.com embed is loaded lazily on click by <BookingCta /> — nothing at page load.
  */
 export default function Hero() {
   return (
@@ -36,24 +37,12 @@ export default function Hero() {
 
           {/* TODO: Verify with lawyer: Phone */}
           <AuditComment text="TODO: Verify with lawyer: Phone" />
-          <BookingActions
+          <BookingCta
             className="mt-10"
-            contactHref="#contact-form"
-            phoneLabel={`Appeler le cabinet · ${SITE.phone}`}
+            secondaryHref="#contact"
+            showPhone
+            notes
           />
-
-          <a
-            href="#expertises"
-            className="eyebrow group mt-7 inline-flex w-fit items-center gap-3 border-b border-gold pb-1 text-navy transition-colors hover:text-bronze"
-          >
-            {CTA.explore}
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </a>
         </div>
 
         {/* Right — the navy buckram cover, with the vertical spine */}

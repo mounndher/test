@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { BookingActions } from "@/components/BookingCta";
+import BookingCta from "@/components/BookingCta";
 import { APPROACH, APPROACH_INTRO, MARD, WHY } from "@/content/site";
 import { DrawRule, Reveal, Section } from "@/components/ui";
 
 /**
- * Method (3 steps) → state courts & ADR band → 4 commitments, closing the
- * section with booking actions. The "#pourquoi" anchor stays on the commitments block.
+ * Method (3 steps) → state courts & ADR band → 4 commitments, closed by the second
+ * primary CTA. The "#pourquoi" anchor is preserved on the commitments block.
  */
 export default function Approche() {
   return (
@@ -111,7 +111,13 @@ export default function Approche() {
             <p className="max-w-[44ch] font-display text-lg italic leading-snug text-ivory/85">
               {WHY.closing}
             </p>
-            <BookingActions className="mt-6" contactHref="#contact-form" tone="dark" />
+            <BookingCta
+              tone="navy"
+              secondaryHref="#contact"
+              showPhone
+              notes
+              className="mt-6"
+            />
           </div>
         </Reveal>
       </div>

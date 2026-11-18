@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { BookingActions } from "@/components/BookingCta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import FaqList, { type FaqItem } from "@/components/FaqList";
+import BookingCta from "@/components/BookingCta";
 import JsonLd from "@/components/JsonLd";
-import { BOOKING, CTA, EXPERTISES, SITE, type ContactSubject } from "@/content/site";
+import FaqList, { type FaqItem } from "@/components/FaqList";
+import { EXPERTISES, SITE, type ContactSubject } from "@/content/site";
 
 export type Faq = FaqItem;
 
@@ -28,6 +28,9 @@ export type ExpertisePageData = {
   contactSubject: ContactSubject;
 };
 
+const APPOINTMENT_LINE =
+  "Premier rendez-vous au cabinet (Paris), en visioconférence ou par téléphone.";
+
 export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -39,18 +42,22 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
     })),
   };
 
-  const contactHref = `/contact?sujet=${encodeURIComponent(data.contactSubject)}#contact-form`;
-  const canonicalUrl = `${SITE.url}${data.path}`;
+  const serviceType =
+    EXPERTISES.find((e) => e.href === data.path)?.domain ?? data.breadcrumbLabel;
+
   const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `${canonicalUrl}#service`,
-    url: canonicalUrl,
-    name: data.breadcrumbLabel,
-    serviceType: EXPERTISES.find(({ href }) => href === data.path)?.domain ?? data.breadcrumbLabel,
+    "@id": `${SITE.url}${data.path}#service`,
+    name: serviceType,
+    serviceType,
+    description: data.intro[0],
+    url: `${SITE.url}${data.path}`,
     provider: { "@id": `${SITE.url}/#organization` },
     areaServed: { "@type": "City", name: "Paris" },
   };
+
+  const contactHref = `/contact?sujet=${encodeURIComponent(data.contactSubject)}#contact-form`;
 
   return (
     <>
@@ -61,16 +68,18 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
         <article className="mx-auto w-full max-w-[92rem] px-5 pb-24 pt-10 sm:px-8 lg:px-12 lg:pb-32 lg:pt-14">
           <Breadcrumbs
             items={[{ label: "Accueil", href: "/" }, { label: data.breadcrumbLabel }]}
-            currentPath={data.path}
           />
           <p className="eyebrow mt-10 text-bronze">{data.eyebrow}</p>
           <h1 className="display-lg mt-6 max-w-[22ch] font-display text-navy">{data.h1}</h1>
           <div aria-hidden="true" className="mt-8 h-px w-full max-w-[28rem] bg-gold" />
 
-          <section aria-label="Premier rendez-vous" className="mt-8 max-w-[52rem] border border-rule bg-paper/60 p-5 sm:p-7">
-            <p className="text-sm leading-relaxed text-ink/85">{BOOKING.firstAppointment}</p>
-            <BookingActions className="mt-4" contactHref={contactHref} />
-          </section>
+          {/* Booking block — near the top */}
+          <div className="mt-10 border border-rule bg-paper/60 p-6 sm:p-8">
+            <p className="max-w-[52ch] font-display text-[1.25rem] leading-snug text-navy">
+              {APPOINTMENT_LINE}
+            </p>
+            <BookingCta className="mt-5" secondaryHref={contactHref} showPhone notes />
+          </div>
 
           <div className="mt-10 grid grid-cols-12 gap-x-6">
             <div className="col-span-12 lg:col-span-8 xl:col-span-7">
@@ -161,51 +170,51 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
                   <br />
                   {SITE.address.street}, {SITE.address.postalCode} {SITE.address.locality}
                 </p>
-                <p className="mt-2 text-xs leading-relaxed text-mute">
-                  Au cabinet (Paris), en visioconférence ou par téléphone.
-                </p>
+                <p className="mt-2 text-xs leading-relaxed text-mute">{APPOINTMENT_LINE}</p>
                 <p className="mt-3 text-sm">
                   <a href={SITE.phoneHref} className="link-underline text-navy">
                     {SITE.phone}
                   </a>
                 </p>
-                <Link
-                  href={contactHref}
-                  className="eyebrow group mt-5 inline-flex w-full items-center justify-center gap-3 border border-navy/35 px-5 py-3.5 text-center text-navy transition-colors duration-300 hover:bg-paper"
-                >
-                  {CTA.secondary}
-                  <span
-                    aria-hidden="true"
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </Link>
+                <BookingCta
+                  layout="stack"
+                  secondaryHref={contactHref}
+                  className="mt-5"
+                />
               </div>
             </aside>
           </div>
 
-          <section aria-label="Prendre rendez-vous ou exposer votre situation" className="mt-20 bg-navy px-6 py-12 sm:px-10">
-            <p className="eyebrow text-goldsoft">Soumettre un dossier</p>
-            <p className="mt-4 max-w-[42ch] font-display text-2xl leading-snug text-ivory">
-              Exposez les faits, les parties et vos éventuelles échéances en quelques lignes.
-            </p>
-            <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-ivory/80">
-              {SITE.confidentialityNotice}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-ivory/80">{BOOKING.firstAppointment}</p>
-            <BookingActions
-              className="mt-5"
-              contactHref={contactHref}
-              tone="dark"
-              phoneLabel={`Appeler · ${SITE.phone}`}
-            />
-            <p className="mt-6 max-w-[66ch] text-xs leading-relaxed text-ivory/65">
-              Les informations de cette page ont un caractère général et informatif&nbsp;; elles
-              ne constituent ni une consultation juridique ni un conseil personnalisé, et leur
-              lecture ne crée aucune relation avocat-client.
-            </p>
-          </section>
+          {/* Booking block — bottom */}
+          <div className="mt-20 bg-navy px-6 py-12 sm:px-10">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+              <div>
+                <p className="eyebrow text-goldsoft">Soumettre un dossier</p>
+                <p className="mt-4 max-w-[42ch] font-display text-2xl leading-snug text-ivory">
+                  Exposez les faits, les parties et vos éventuelles échéances en quelques lignes.
+                </p>
+                <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-ivory/80">
+                  {SITE.confidentialityNotice}
+                </p>
+                <p className="mt-4 max-w-[66ch] text-xs leading-relaxed text-ivory/65">
+                  Les informations de cette page ont un caractère général et informatif&nbsp;; elles
+                  ne constituent ni une consultation juridique ni un conseil personnalisé, et leur
+                  lecture ne crée aucune relation avocat-client.
+                </p>
+              </div>
+              <div className="shrink-0 lg:max-w-sm">
+                <p className="text-sm leading-relaxed text-ivory/80">{APPOINTMENT_LINE}</p>
+                <BookingCta
+                  tone="navy"
+                  layout="stack"
+                  secondaryHref={contactHref}
+                  showPhone
+                  notes
+                  className="mt-4"
+                />
+              </div>
+            </div>
+          </div>
         </article>
       </main>
       <Footer />

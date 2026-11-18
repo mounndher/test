@@ -1,4 +1,5 @@
 import AuditComment from "@/components/AuditComment";
+import JsonLd from "@/components/JsonLd";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
@@ -7,7 +8,6 @@ import QuandFaireAppel from "@/components/QuandFaireAppel";
 import Approche from "@/components/Approche";
 import Cabinet from "@/components/Cabinet";
 import HomeFaq from "@/components/HomeFaq";
-import JsonLd from "@/components/JsonLd";
 import PremierContact from "@/components/PremierContact";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";

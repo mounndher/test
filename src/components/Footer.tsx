@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AuditComment from "@/components/AuditComment";
+import { BookingLink } from "@/components/BookingCta";
 import { CTA, FOOTER, SITE } from "@/content/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   const contactHref =
-    pathname === "/" || pathname === "/contact" ? "#contact-form" : "/contact#contact-form";
+    pathname === "/" ? "#contact" : pathname === "/contact" ? "#contact-form" : "/contact";
   const resolveHref = (href: string) =>
     pathname === "/" && href.startsWith("/#") ? href.slice(1) : href;
 
@@ -73,12 +74,15 @@ export default function Footer() {
                 <li key={opt}>{opt}</li>
               ))}
             </ul>
-            <Link
-              href={contactHref}
-              className="link-underline mt-5 inline-block text-sm text-ivory/80 transition-colors hover:text-ivory"
-            >
-              {CTA.secondary}
-            </Link>
+            <div className="mt-5 flex flex-col items-start gap-2 text-sm">
+              <BookingLink className="link-underline text-ivory/80 transition-colors hover:text-ivory" />
+              <Link
+                href={contactHref}
+                className="link-underline text-ivory/80 transition-colors hover:text-ivory"
+              >
+                {CTA.write}
+              </Link>
+            </div>
           </div>
         </div>
 

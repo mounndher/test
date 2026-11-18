@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import AuditComment from "@/components/AuditComment";
 import Header from "@/components/Header";
-import JsonLd from "@/components/JsonLd";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/ContactForm";
 import FaqList from "@/components/FaqList";
+import JsonLd from "@/components/JsonLd";
 import { CONTACT, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = buildPageMetadata({
 const FAQS = [
   {
     q: "Comment fonctionne l’envoi de ma demande ?",
-    a: "Le formulaire transmet votre demande directement au cabinet. Merci de ne communiquer aucune pièce sensible lors de ce premier envoi. Une réponse vous est adressée sous 24 h ouvrées.",
+    a: "Le formulaire transmet votre demande directement au cabinet, par courriel, sans ouvrir votre messagerie. Merci de ne communiquer aucune pièce sensible lors de ce premier envoi. Une réponse vous est adressée sous 24 h ouvrées.",
   },
   {
     q: "Quelles modalités de rendez-vous sont proposées ?",
@@ -56,7 +56,7 @@ export default function Page() {
           <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "Contact" }]} />
           <p className="eyebrow mt-10 text-bronze">{SITE.name}</p>
           <h1 className="display-lg mt-6 max-w-[22ch] font-display text-navy">
-            Contact
+            Contacter le cabinet
           </h1>
           <div aria-hidden="true" className="mt-8 h-px w-full max-w-[28rem] bg-gold" />
           <p className="measure mt-8 text-[1.0625rem] leading-[1.75] text-ink/85">{CONTACT.body}</p>

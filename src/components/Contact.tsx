@@ -1,7 +1,7 @@
 import AuditComment from "@/components/AuditComment";
-import { BookingActions } from "@/components/BookingCta";
+import BookingCta from "@/components/BookingCta";
 import ContactForm from "@/components/ContactForm";
-import { BOOKING, CONTACT, SITE } from "@/content/site";
+import { CONTACT, SITE } from "@/content/site";
 import { Reveal, Section } from "@/components/ui";
 
 export default function Contact() {
@@ -70,16 +70,21 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        {/* Right — booking and form */}
+        {/* Right — direct booking card, then the form */}
         <div className="col-span-12 lg:col-span-7 lg:col-start-6">
           <Reveal delay={0.08}>
-            <div className="mb-6 border border-rule bg-paper/60 p-6 sm:p-9">
-              <h3 className="font-display text-2xl leading-snug text-navy">
+            <div className="border border-rule bg-ivory p-6 sm:p-8">
+              <p className="eyebrow text-bronze">Réservation en ligne</p>
+              <h3 className="mt-3 font-display text-[1.35rem] leading-snug text-navy">
                 Réserver directement un créneau
               </h3>
-              <p className="mt-3 text-sm text-mute">{BOOKING.firstAppointment}</p>
-              <BookingActions className="mt-5" contactHref="#contact-form" />
+              <p className="mt-2 max-w-[52ch] text-sm leading-relaxed text-ink/80">
+                Premier rendez-vous au cabinet (Paris), en visioconférence ou par téléphone.
+              </p>
+              <BookingCta className="mt-5" showSecondary={false} notes />
             </div>
+          </Reveal>
+          <Reveal delay={0.12} className="mt-8">
             <ContactForm formId="f" />
           </Reveal>
         </div>

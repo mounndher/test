@@ -18,7 +18,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function PolitiqueConfidentialitePage() {
   return (
-    <LegalArticle title="Politique de confidentialité" updated="Avril 2026">
+    <LegalArticle title="Politique de confidentialité" updated="Novembre 2026">
       <h2>1. Responsable du traitement</h2>
       {/* TODO: Verify with lawyer: Phone and SIREN */}
       <AuditComment text="TODO: Verify with lawyer: Phone and SIREN" />
@@ -40,26 +40,49 @@ export default function PolitiqueConfidentialitePage() {
       </p>
 
       <h2>2. Modalités de prise de contact depuis le Site</h2>
+      <h3>2.1. Formulaire de contact — envoi via Resend</h3>
       <p>
-        Le formulaire de contact proposé sur le Site transmet la demande saisie par le visiteur,
-        par courrier électronique, à la messagerie professionnelle du cabinet. Aucune saisie
-        n&rsquo;est enregistrée dans une base de données du Site. L&rsquo;acheminement du message
-        est assuré par un prestataire technique d&rsquo;envoi de courriels (Resend), qui agit pour
-        le compte du cabinet. Afin de prévenir les envois abusifs, un dispositif technique limite
-        le nombre d&rsquo;envois successifs depuis une même adresse IP&nbsp;; cette information est
-        conservée en mémoire pendant quelques minutes seulement et n&rsquo;est pas enregistrée de
-        manière durable.
+        Le formulaire de contact proposé sur le Site transmet la demande saisie par le visiteur
+        à la messagerie professionnelle du cabinet. Aucune saisie n&rsquo;est enregistrée dans une
+        base de données du Site. L&rsquo;acheminement du message est assuré par un prestataire
+        technique d&rsquo;envoi d&rsquo;e-mails (Resend), qui agit pour le compte du cabinet.
       </p>
       <p>
-        La réservation de rendez-vous est gérée par Cal.com, prestataire tiers qui traite les données
-        de réservation pour le compte du cabinet, et les messages transmis par le formulaire sont
-        envoyés via le prestataire d&rsquo;envoi de courriels du Site (Resend).
+        Afin de prévenir les envois abusifs, un dispositif technique limite le nombre
+        d&rsquo;envois successifs depuis une même adresse IP&nbsp;; cette information est conservée
+        en mémoire pendant quelques minutes seulement et n&rsquo;est pas enregistrée de manière
+        durable.
       </p>
       {/* TODO: Verify with lawyer: wording on the email delivery provider (Resend), possible data transfers outside the EU and the processing agreement */}
       <AuditComment text="TODO: Verify with lawyer: wording on the email delivery provider (Resend), possible data transfers outside the EU and the processing agreement" />
+
+      <h3>2.2. Réservation en ligne — module Cal.com</h3>
       <p>
-        Le visiteur reste libre de ne pas utiliser le formulaire et d&rsquo;écrire directement au
-        cabinet par courriel ou par téléphone, aux coordonnées indiquées ci-dessus.
+        La prise de rendez-vous en ligne est assurée par le service tiers Cal.com, qui traite les
+        informations saisies lors de la réservation pour le compte du cabinet. Le module
+        d&rsquo;ouverture de la réservation peut charger des contenus techniques tiers, uniquement
+        lorsque le visiteur utilise le bouton de réservation.
+      </p>
+      <p>
+        Les données de réservation font l&rsquo;objet d&rsquo;un traitement distinct décrit au
+        point&nbsp;3 bis ci-dessous. Pour les informations relatives au service, le visiteur peut
+        consulter la{" "}
+        <a
+          href="https://cal.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-underline"
+        >
+          politique de confidentialité de Cal.com
+        </a>
+        .
+      </p>
+      {/* TODO: Verify with lawyer: Cal.com entity, possible data transfers outside the EU and the processing agreement */}
+      <AuditComment text="TODO: Verify with lawyer: Cal.com entity, possible data transfers outside the EU and the processing agreement" />
+      <p>
+        Le visiteur reste libre de ne pas utiliser le formulaire ou le module de réservation et
+        d&rsquo;écrire directement au cabinet par e-mail ou par téléphone, aux coordonnées indiquées
+        ci-dessus.
       </p>
       <p>
         Comme pour toute consultation de site internet, l&rsquo;hébergeur traite uniquement les
@@ -67,23 +90,79 @@ export default function PolitiqueConfidentialitePage() {
         du service.
       </p>
 
-      <h2>3. Données reçues en cas d&rsquo;envoi d&rsquo;un courriel</h2>
+      <h2>3. Données reçues lors de la prise de contact</h2>
       <p>
-        Lorsque vous adressez un courriel à {SITE.name}, le cabinet reçoit exclusivement les
-        informations que vous y mentionnez&nbsp;: nom et prénom, adresse électronique, numéro de
-        téléphone et dénomination sociale lorsqu&rsquo;ils sont renseignés, nature du dossier,
-        modalité de rendez-vous souhaitée et exposé factuel de la situation.
+        Lorsque vous prenez contact avec {SITE.name}, le cabinet reçoit les informations que vous
+        lui transmettez&nbsp;: nom et prénom, adresse électronique, numéro de téléphone et
+        dénomination sociale lorsqu&rsquo;ils sont renseignés, nature du dossier, modalité de
+        rendez-vous souhaitée et exposé factuel de la situation.
       </p>
       <p>
         Aucune donnée particulière au sens de l&rsquo;article&nbsp;9 du Règlement (UE) 2016/679
-        (RGPD) n&rsquo;est sollicitée à ce stade. Il est recommandé de ne joindre aucune pièce
-        sensible lors du premier courriel&nbsp;; les modalités de communication de pièces seront
+        (RGPD) n&rsquo;est sollicitée à ce stade. Il est recommandé de ne communiquer aucune pièce
+        sensible lors du premier contact&nbsp;; les modalités de communication de pièces seront
         convenues directement avec le cabinet lors du premier échange.
       </p>
 
+      <h2>3 bis. Données de réservation en ligne (Cal.com)</h2>
+      <p>
+        Lorsqu&rsquo;un visiteur réserve un premier rendez-vous via le module Cal.com, les
+        informations nécessaires à cette réservation sont traitées par Cal.com pour le compte du
+        cabinet. Ce traitement est distinct de celui du formulaire de contact.
+      </p>
+      <h3>Données concernées</h3>
+      <ul>
+        <li>Nom et prénom renseignés lors de la réservation&nbsp;;</li>
+        <li>Adresse électronique du visiteur&nbsp;;</li>
+        <li>Créneau de rendez-vous choisi&nbsp;;</li>
+        <li>Informations saisies par le visiteur dans le module de réservation.</li>
+      </ul>
+      <h3>Finalités et bases légales</h3>
+      <p>
+        Ces informations sont utilisées pour organiser le premier rendez-vous et permettre au
+        cabinet de procéder à la vérification de l&rsquo;absence de conflit d&rsquo;intérêts. Selon
+        les opérations de traitement concernées, les bases légales invoquées sont les suivantes&nbsp;:
+      </p>
+      <ul>
+        <li>
+          <strong>Mesures précontractuelles</strong>&nbsp;: exécution de mesures précontractuelles
+          prises à la demande de la personne concernée, sur le fondement de l&rsquo;article&nbsp;6,
+          §&nbsp;1, b du RGPD.
+        </li>
+        <li>
+          <strong>Intérêt légitime</strong>&nbsp;: intérêt légitime du cabinet à organiser les
+          rendez-vous et à effectuer les vérifications déontologiques utiles, sur le fondement de
+          l&rsquo;article&nbsp;6, §&nbsp;1, f du RGPD.
+        </li>
+      </ul>
+      <h3>Conservation des données de réservation</h3>
+      <p>
+        Si aucun dossier n&rsquo;est ouvert à la suite de la réservation, les informations de
+        réservation sont supprimées. [Délai précis de suppression et modalités de mise en œuvre à
+        confirmer.]
+      </p>
+      <p>
+        Si un dossier est ouvert, les informations nécessaires à la mission sont conservées
+        selon les durées et modalités applicables au cabinet. [Durée de conservation, archivage et
+        délais de prescription applicables à confirmer.]
+      </p>
+      <h3>Hébergement et garanties de transfert</h3>
+      <p>
+        Les modalités d&rsquo;hébergement des données de réservation et les garanties encadrant
+        d&rsquo;éventuels transferts hors de l&rsquo;Espace économique européen doivent être
+        précisées en fonction du service effectivement configuré.
+      </p>
+      <p>
+        [Localisation de l&rsquo;hébergement des données de réservation à confirmer&nbsp;;
+        pays concernés par d’éventuels transferts à confirmer&nbsp;; garanties et accords de
+        sous-traitance à confirmer.]
+      </p>
+      {/* TODO: Verify with lawyer: actual Cal.com hosting locations, transfers, retention periods and processing agreement */}
+      <AuditComment text="TODO: Verify with lawyer: actual Cal.com hosting locations, transfers, retention periods and processing agreement" />
+
       <h2>4. Finalités, bases légales et secret professionnel</h2>
       <p>
-        Les informations reçues par courrier électronique ou par téléphone sont traitées par le
+        Les informations reçues via le formulaire de contact ou par téléphone sont traitées par le
         cabinet aux seules fins suivantes&nbsp;:
       </p>
       <ul>
@@ -109,11 +188,37 @@ export default function PolitiqueConfidentialitePage() {
 
       <h2>5. Destinataires</h2>
       <p>
-        Les messages adressés à {SITE.email} sont destinés exclusivement au cabinet pour
-        l&rsquo;examen de la demande. Les données ne font l&rsquo;objet d&rsquo;aucune cession ni
-        exploitation commerciale et transitent uniquement par les services de messagerie
-        électronique nécessaires à leur acheminement.
+        Les demandes adressées à {SITE.email} sont destinées au cabinet pour l&rsquo;examen de la
+        demande. Les réservations effectuées via Cal.com sont traitées par ce prestataire pour le
+        compte du cabinet. Les données ne font l&rsquo;objet d&rsquo;aucune cession ni exploitation
+        commerciale par le cabinet.
       </p>
+      <p>
+        Selon les opérations concernées, les prestataires techniques suivants peuvent intervenir&nbsp;:
+      </p>
+      <ul>
+        <li>
+          <strong>Cal.com</strong>&nbsp;: réservation des rendez-vous en ligne.
+        </li>
+        <li>
+          <strong>Resend</strong>&nbsp;: acheminement des demandes du formulaire de contact vers la
+          messagerie professionnelle du cabinet.
+        </li>
+        <li>
+          <strong>Vercel</strong>&nbsp;: hébergement du Site et traitement des journaux techniques
+          nécessaires à son affichage et à sa sécurité.
+        </li>
+        <li>
+          [Outil de visioconférence, le cas échéant&nbsp;: nom du prestataire et modalités de
+          traitement à confirmer.]
+        </li>
+      </ul>
+      <p>
+        [Localisation des traitements, pays concernés par d’éventuels transferts et garanties
+        applicables à confirmer pour chaque prestataire.]
+      </p>
+      {/* TODO: Verify with lawyer: Vercel hosting region/log retention and video conferencing provider, if used */}
+      <AuditComment text="TODO: Verify with lawyer: Vercel hosting region/log retention and video conferencing provider, if used" />
 
       <h2>6. Durée de conservation</h2>
       <p>
@@ -134,7 +239,7 @@ export default function PolitiqueConfidentialitePage() {
         de vos données après votre décès.
       </p>
       <p>
-        Ces droits s&rsquo;exercent par courriel à{" "}
+        Ces droits s&rsquo;exercent par e-mail à{" "}
         <a href={`mailto:${SITE.email}`} className="link-underline">
           {SITE.email}
         </a>{" "}
@@ -159,10 +264,21 @@ export default function PolitiqueConfidentialitePage() {
 
       <h2>8. Cookies et mesure d&rsquo;audience</h2>
       <p>
-        Le Site ne dépose aucun cookie publicitaire, aucun traceur marketing et aucun outil tiers de
-        mesure d&rsquo;audience. Les polices de caractères et les visuels sont servis directement
-        par le Site&nbsp;; la consultation des liens externes (tels que les publications parues sur
-        Village de la Justice) relève de la politique propre à chaque site tiers.
+        Le Site n&rsquo;intègre aucun cookie publicitaire ni traceur marketing. Le module de
+        réservation Cal.com peut charger des contenus techniques tiers (scripts ou autres
+        ressources), susceptibles d&rsquo;entraîner le dépôt de cookies ou l&rsquo;établissement de
+        connexions vers des services tiers.
+      </p>
+      <p>
+        [Nature, finalités et durées des cookies ou autres traceurs réellement utilisés par le
+        module Cal.com à confirmer après vérification dans le navigateur, ainsi que les mesures de
+        consentement requises.]
+      </p>
+      {/* TODO: Vérifier dans le navigateur les cookies et contenus tiers réellement chargés par Cal.com, avant et après ouverture de la modale (finalités, durées et consentement requis). */}
+      <p>
+        Les polices de caractères et les visuels sont servis directement par le Site&nbsp;; la
+        consultation des liens externes (tels que les publications parues sur Village de la
+        Justice) relève de la politique propre à chaque site tiers.
       </p>
 
       <h2>9. Sécurité des échanges</h2>

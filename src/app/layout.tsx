@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 import { Inter, Playfair_Display } from "next/font/google";
 import { EXPERTISES, SITE } from "@/content/site";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
-import { BookingProvider } from "@/components/BookingCta";
 import JsonLd from "@/components/JsonLd";
 import MobileCtaBar from "@/components/MobileCtaBar";
 import "./globals.css";
@@ -80,7 +79,8 @@ const siteGraphJsonLd = {
       name: SITE.name,
       url: SITE.url,
       image: `${SITE.url}${DEFAULT_OG_IMAGE.url}`,
-      description: DESCRIPTION,
+      description:
+        "Cabinet d'avocats à Paris 16e dédié au contentieux des affaires : litiges commerciaux, conflits entre associés, responsabilité des dirigeants et procédures d'urgence.",
       foundingDate: String(SITE.founded),
       legalName: SITE.legalName,
       telephone: SITE.phoneE164,
@@ -105,7 +105,8 @@ const siteGraphJsonLd = {
         { "@type": "AdministrativeArea", name: "Île-de-France" },
         { "@type": "Country", name: "France" },
       ],
-      knowsAbout: EXPERTISES.map(({ domain }) => domain),
+      knowsAbout: EXPERTISES.map((e) => e.domain),
+      // sameAs: intentionally omitted — no verified social profile URL exists yet.
       founder: { "@id": `${SITE.url}/#founder` },
     },
     {
@@ -113,7 +114,6 @@ const siteGraphJsonLd = {
       "@id": `${SITE.url}/#founder`,
       name: "Pierre Blexmann",
       jobTitle: "Avocat",
-      url: `${SITE.url}/le-cabinet`,
       worksFor: { "@id": `${SITE.url}/#organization` },
     },
     {
@@ -143,10 +143,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Aller au contenu
         </a>
-        <BookingProvider>
-          {children}
-          <MobileCtaBar />
-        </BookingProvider>
+        {children}
+        <MobileCtaBar />
       </body>
     </html>
   );
