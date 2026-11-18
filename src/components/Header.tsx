@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import BookingCta from "@/components/BookingCta";
 import { CTA, NAV, SITE } from "@/content/site";
 
 function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
@@ -39,9 +40,7 @@ export default function Header() {
   const pathname = usePathname();
 
   const close = useCallback(() => setOpen(false), []);
-  // Single unambiguous contact target: #contact on homepage, #contact-form on /contact, /contact on inner pages
-  const ctaHref =
-    pathname === "/" ? "#contact" : pathname === "/contact" ? "#contact-form" : "/contact";
+  const contactHref = pathname === "/" || pathname === "/contact" ? "#contact-form" : "/contact#contact-form";
 
   const resolveNavHref = (href: string) =>
     pathname === "/" && href.startsWith("/#") ? href.slice(1) : href;
@@ -55,7 +54,7 @@ export default function Header() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape" && !document.querySelector("#booking-dialog[open]")) close();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = open ? "hidden" : "";
@@ -98,12 +97,7 @@ export default function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-3">
-          <Link
-            href={ctaHref}
-            className="eyebrow hidden whitespace-nowrap bg-navy px-5 py-3 text-ivory transition-colors duration-300 hover:bg-navytint sm:inline-block"
-          >
-            {CTA.primary}
-          </Link>
+          <BookingCta className="eyebrow hidden whitespace-nowrap bg-navy px-5 py-3 text-ivory transition-colors duration-300 hover:bg-navytint sm:inline-block" />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -149,12 +143,13 @@ export default function Header() {
                   );
                 })}
               </ul>
+              <BookingCta className="eyebrow mt-6 flex items-center justify-center bg-navy px-6 py-4 text-center text-ivory transition-colors hover:bg-navytint" />
               <Link
-                href={ctaHref}
+                href={contactHref}
                 onClick={close}
-                className="eyebrow mt-6 flex items-center justify-center gap-3 bg-navy px-6 py-4 text-ivory"
+                className="eyebrow mt-3 flex items-center justify-center border border-navy/35 px-6 py-4 text-center text-navy transition-colors hover:bg-paper"
               >
-                {CTA.primary}
+                {CTA.secondary}
               </Link>
               <p className="mt-5 text-sm text-mute">
                 <a href={SITE.phoneHref} className="link-underline">

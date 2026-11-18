@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AuditComment from "@/components/AuditComment";
+import { BookingActions } from "@/components/BookingCta";
 import { CTA, SITE } from "@/content/site";
 
 /**
@@ -33,34 +34,19 @@ export default function Hero() {
             confrontés à des litiges commerciaux.
           </p>
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-            <a
-              href="#contact"
-              className="eyebrow group inline-flex items-center justify-center gap-3 bg-navy px-7 py-4 text-ivory transition-colors duration-300 hover:bg-navytint"
-            >
-              {CTA.primary}
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </a>
-            {/* TODO: Verify with lawyer: Phone */}
-            <AuditComment text="TODO: Verify with lawyer: Phone" />
-            <a
-              href={SITE.phoneHref}
-              className="eyebrow group inline-flex items-center justify-center gap-3 border border-ink/30 px-7 py-4 text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-ivory"
-            >
-              Appeler le cabinet · {SITE.phone}
-            </a>
-          </div>
+          {/* TODO: Verify with lawyer: Phone */}
+          <AuditComment text="TODO: Verify with lawyer: Phone" />
+          <BookingActions
+            className="mt-10"
+            contactHref="#contact-form"
+            phoneLabel={`Appeler le cabinet · ${SITE.phone}`}
+          />
 
           <a
             href="#expertises"
             className="eyebrow group mt-7 inline-flex w-fit items-center gap-3 border-b border-gold pb-1 text-navy transition-colors hover:text-bronze"
           >
-            {CTA.secondary}
+            {CTA.explore}
             <span
               aria-hidden="true"
               className="transition-transform duration-300 group-hover:translate-x-1"

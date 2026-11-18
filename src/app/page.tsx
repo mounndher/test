@@ -7,6 +7,7 @@ import QuandFaireAppel from "@/components/QuandFaireAppel";
 import Approche from "@/components/Approche";
 import Cabinet from "@/components/Cabinet";
 import HomeFaq from "@/components/HomeFaq";
+import JsonLd from "@/components/JsonLd";
 import PremierContact from "@/components/PremierContact";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -25,10 +26,7 @@ const homeFaqJsonLd = {
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqJsonLd) }}
-      />
+      <JsonLd data={homeFaqJsonLd} />
       <AuditComment text="TODO: Verify with lawyer: Phone, Toque number, SIREN, Founding year 2013, the contact mailbox on blexmann-avocats.fr, and replace 2020 labor law articles with recent commercial litigation articles" />
       <Header />
       <main id="main">

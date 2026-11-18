@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AuditComment from "@/components/AuditComment";
-import { FOOTER, SITE } from "@/content/site";
+import { CTA, FOOTER, SITE } from "@/content/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   const contactHref =
-    pathname === "/" ? "#contact" : pathname === "/contact" ? "#contact-form" : "/contact";
+    pathname === "/" || pathname === "/contact" ? "#contact-form" : "/contact#contact-form";
   const resolveHref = (href: string) =>
     pathname === "/" && href.startsWith("/#") ? href.slice(1) : href;
 
@@ -77,7 +77,7 @@ export default function Footer() {
               href={contactHref}
               className="link-underline mt-5 inline-block text-sm text-ivory/80 transition-colors hover:text-ivory"
             >
-              Contacter le cabinet
+              {CTA.secondary}
             </Link>
           </div>
         </div>

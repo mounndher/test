@@ -1,6 +1,7 @@
 import AuditComment from "@/components/AuditComment";
+import { BookingActions } from "@/components/BookingCta";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT, SITE } from "@/content/site";
+import { BOOKING, CONTACT, SITE } from "@/content/site";
 import { Reveal, Section } from "@/components/ui";
 
 export default function Contact() {
@@ -69,9 +70,16 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        {/* Right — the form */}
+        {/* Right — booking and form */}
         <div className="col-span-12 lg:col-span-7 lg:col-start-6">
           <Reveal delay={0.08}>
+            <div className="mb-6 border border-rule bg-paper/60 p-6 sm:p-9">
+              <h3 className="font-display text-2xl leading-snug text-navy">
+                Réserver directement un créneau
+              </h3>
+              <p className="mt-3 text-sm text-mute">{BOOKING.firstAppointment}</p>
+              <BookingActions className="mt-5" contactHref="#contact-form" />
+            </div>
             <ContactForm formId="f" />
           </Reveal>
         </div>

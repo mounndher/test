@@ -50,6 +50,11 @@ export default function PolitiqueConfidentialitePage() {
         conservée en mémoire pendant quelques minutes seulement et n&rsquo;est pas enregistrée de
         manière durable.
       </p>
+      <p>
+        La réservation de rendez-vous est gérée par Cal.com, prestataire tiers qui traite les données
+        de réservation pour le compte du cabinet, et les messages transmis par le formulaire sont
+        envoyés via le prestataire d&rsquo;envoi de courriels du Site (Resend).
+      </p>
       {/* TODO: Verify with lawyer: wording on the email delivery provider (Resend), possible data transfers outside the EU and the processing agreement */}
       <AuditComment text="TODO: Verify with lawyer: wording on the email delivery provider (Resend), possible data transfers outside the EU and the processing agreement" />
       <p>

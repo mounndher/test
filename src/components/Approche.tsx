@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { BookingActions } from "@/components/BookingCta";
 import { APPROACH, APPROACH_INTRO, MARD, WHY } from "@/content/site";
 import { DrawRule, Reveal, Section } from "@/components/ui";
 
 /**
- * Method (3 steps) → state courts & ADR band → 4 commitments, closed by the second
- * primary CTA. The "#pourquoi" anchor is preserved on the commitments block.
+ * Method (3 steps) → state courts & ADR band → 4 commitments, closing the
+ * section with booking actions. The "#pourquoi" anchor stays on the commitments block.
  */
 export default function Approche() {
   return (
@@ -106,22 +107,11 @@ export default function Approche() {
         </div>
 
         <Reveal delay={0.1} className="mt-10">
-          <div className="flex flex-col gap-5 border-t border-ivory/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="border-t border-ivory/15 pt-8">
             <p className="max-w-[44ch] font-display text-lg italic leading-snug text-ivory/85">
               {WHY.closing}
             </p>
-            <a
-              href="#contact"
-              className="eyebrow group inline-flex shrink-0 items-center justify-center gap-3 bg-ivory px-7 py-4 text-navy transition-colors duration-300 hover:bg-goldsoft"
-            >
-              {WHY.cta}
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </a>
+            <BookingActions className="mt-6" contactHref="#contact-form" tone="dark" />
           </div>
         </Reveal>
       </div>

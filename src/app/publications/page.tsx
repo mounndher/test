@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AuditComment from "@/components/AuditComment";
+import { BookingActions } from "@/components/BookingCta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { EXTERNAL_PUBLICATIONS } from "@/content/articles";
-import { CTA, EXPERTISES, SITE } from "@/content/site";
+import { EXPERTISES, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
 
 const TITLE = "Publications externes | Blexmann Avocats";
@@ -140,22 +141,11 @@ export default function Page() {
           </section>
 
           <div className="mt-20 bg-navy px-6 py-12 sm:px-10">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <p className="max-w-[42ch] font-display text-2xl leading-snug text-ivory">
                 Confronté à un litige commercial ou sociétaire&nbsp;? Exposez les faits au cabinet.
               </p>
-              <Link
-                href="/contact"
-                className="eyebrow group inline-flex shrink-0 items-center justify-center gap-3 bg-ivory px-7 py-4 text-navy transition-colors duration-300 hover:bg-goldsoft"
-              >
-                {CTA.primary}
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
+              <BookingActions contactHref="/contact#contact-form" tone="dark" />
             </div>
           </div>
         </article>

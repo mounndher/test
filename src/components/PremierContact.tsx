@@ -1,3 +1,4 @@
+import { BookingActions } from "@/components/BookingCta";
 import { FIRST_CONTACT } from "@/content/site";
 import { Reveal, Section } from "@/components/ui";
 
@@ -31,6 +32,7 @@ export default function PremierContact() {
           </li>
         ))}
       </ol>
+      <BookingActions className="mt-10" contactHref="#contact-form" />
     </Section>
   );
 }

@@ -1,28 +1,27 @@
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 import { SITE } from "@/content/site";
 
 export type Crumb = { label: string; href?: string };
 
-export default function Breadcrumbs({ items }: { items: Crumb[] }) {
+export default function Breadcrumbs({ items, currentPath }: { items: Crumb[]; currentPath?: string }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: item.label,
-      ...(item.href
-        ? { item: item.href === "/" ? SITE.url : `${SITE.url}${item.href}` }
-        : {}),
-    })),
+    itemListElement: items.map((item, i) => {
+      const href = item.href ?? (i === items.length - 1 ? currentPath : undefined);
+      return {
+        "@type": "ListItem",
+        position: i + 1,
+        name: item.label,
+        ...(href ? { item: href === "/" ? SITE.url : `${SITE.url}${href}` } : {}),
+      };
+    }),
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <nav aria-label="Fil d'Ariane">
         <ol className="flex flex-wrap items-center gap-x-3 gap-y-1">
           {items.map((item, i) => (

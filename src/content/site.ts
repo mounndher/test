@@ -51,9 +51,18 @@ export const SITE = {
   linkedin: null as string | null,
 } as const;
 
+const CAL_LINK = "pierre-blexmann";
+
+export const BOOKING = {
+  calLink: CAL_LINK,
+  url: `https://cal.com/${CAL_LINK}`,
+  firstAppointment: "Premier rendez-vous au cabinet (Paris), en visioconférence ou par téléphone.",
+} as const;
+
 export const CTA = {
-  primary: "Exposer ma situation",
-  secondary: "Voir les domaines d’intervention",
+  primary: "Prendre rendez-vous",
+  secondary: "Exposer ma situation",
+  explore: "Voir les domaines d’intervention",
   submit: "Envoyer ma demande",
   reassurance: "Réponse sous 24 h ouvrées. Échange confidentiel.",
 } as const;
@@ -219,7 +228,6 @@ export const WHY = {
     },
   ],
   closing: "Une conduite de dossier lisible, fondée sur les pièces et l’intérêt économique du client.",
-  cta: CTA.primary,
 } as const;
 
 export const ABOUT = {
@@ -285,16 +293,16 @@ export const FIRST_CONTACT = {
   title: "Comment se déroule la première prise de contact ?",
   steps: [
     {
-      title: "Vous exposez les faits",
-      body: "Parties, contexte, échéance en cours : quelques lignes suffisent.",
+      title: "Vous réservez un créneau ou exposez les faits",
+      body: "Choisissez un créneau en ligne ou résumez votre situation en quelques lignes via le formulaire.",
     },
     {
-      title: "Vérification des conflits d’intérêts",
-      body: "Le cabinet s’assure de l’absence de conflit avant tout échange sur le fond.",
+      title: "Le cabinet vérifie l’absence de conflit d’intérêts",
+      body: "Cette vérification intervient après votre prise de contact.",
     },
     {
       title: "Premier rendez-vous",
-      body: "Au cabinet (Paris), en visio ou par téléphone, avec présentation des modalités d’honoraires.",
+      body: "Au cabinet (Paris), en visioconférence ou par téléphone.",
     },
   ],
 } as const;
@@ -306,7 +314,7 @@ export const CONTACT = {
   formHelper:
     "Les champs marqués d’un astérisque (*) sont obligatoires. Merci de ne communiquer aucune information sensible lors de ce premier message.",
   formNote:
-    "Votre demande est traitée avec discrétion et dans le respect du secret professionnel. L’envoi de ce courriel ne crée pas, en soi, de relation avocat-client : celle-ci suppose l’acceptation expresse du dossier par le cabinet, après vérification notamment de l’absence de conflit d’intérêts.",
+    "Votre demande est traitée avec discrétion et dans le respect du secret professionnel. L'envoi de ce formulaire ne crée pas, en soi, de relation avocat-client : celle-ci suppose l'acceptation expresse du dossier par le cabinet, après vérification notamment de l'absence de conflit d'intérêts.",
   subjects: CONTACT_SUBJECTS,
 } as const;
 

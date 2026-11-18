@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Inter, Playfair_Display } from "next/font/google";
-import { SITE } from "@/content/site";
+import { EXPERTISES, SITE } from "@/content/site";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { BookingProvider } from "@/components/BookingCta";
+import JsonLd from "@/components/JsonLd";
 import MobileCtaBar from "@/components/MobileCtaBar";
 import "./globals.css";
 
@@ -73,7 +75,7 @@ const siteGraphJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["LegalService", "Attorney"],
+      "@type": "LegalService",
       "@id": `${SITE.url}/#organization`,
       name: SITE.name,
       url: SITE.url,
@@ -103,24 +105,15 @@ const siteGraphJsonLd = {
         { "@type": "AdministrativeArea", name: "Île-de-France" },
         { "@type": "Country", name: "France" },
       ],
-      knowsAbout: [
-        "Contentieux des affaires",
-        "Contentieux commercial et contractuel",
-        "Conflits entre associés et actionnaires",
-        "Responsabilité des dirigeants",
-        "Contentieux post-acquisition",
-        "Rupture brutale des relations commerciales et concurrence déloyale",
-        "Référé et procédures d’urgence",
-        "Contentieux commercial international",
-        "Modes alternatifs de règlement des différends",
-      ],
+      knowsAbout: EXPERTISES.map(({ domain }) => domain),
       founder: { "@id": `${SITE.url}/#founder` },
     },
     {
       "@type": "Person",
       "@id": `${SITE.url}/#founder`,
       name: "Pierre Blexmann",
-      jobTitle: "Avocat au Barreau de Paris",
+      jobTitle: "Avocat",
+      url: `${SITE.url}/le-cabinet`,
       worksFor: { "@id": `${SITE.url}/#organization` },
     },
     {
@@ -138,10 +131,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" className={`${playfair.variable} ${inter.variable}`}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteGraphJsonLd) }}
-        />
+        <JsonLd data={siteGraphJsonLd} />
       </head>
       <body className="min-h-screen bg-ivory text-ink antialiased">
         <noscript>
@@ -153,8 +143,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Aller au contenu
         </a>
-        {children}
-        <MobileCtaBar />
+        <BookingProvider>
+          {children}
+          <MobileCtaBar />
+        </BookingProvider>
       </body>
     </html>
   );

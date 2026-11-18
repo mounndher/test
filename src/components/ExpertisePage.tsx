@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { BookingActions } from "@/components/BookingCta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FaqList, { type FaqItem } from "@/components/FaqList";
-import { CTA, SITE, type ContactSubject } from "@/content/site";
+import JsonLd from "@/components/JsonLd";
+import { BOOKING, CTA, EXPERTISES, SITE, type ContactSubject } from "@/content/site";
 
 export type Faq = FaqItem;
 
@@ -38,22 +40,37 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
   };
 
   const contactHref = `/contact?sujet=${encodeURIComponent(data.contactSubject)}#contact-form`;
+  const canonicalUrl = `${SITE.url}${data.path}`;
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${canonicalUrl}#service`,
+    url: canonicalUrl,
+    name: data.breadcrumbLabel,
+    serviceType: EXPERTISES.find(({ href }) => href === data.path)?.domain ?? data.breadcrumbLabel,
+    provider: { "@id": `${SITE.url}/#organization` },
+    areaServed: { "@type": "City", name: "Paris" },
+  };
 
   return (
     <>
       <Header />
       <main id="main" className="bg-ivory">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
+        <JsonLd data={faqJsonLd} />
+        <JsonLd data={serviceJsonLd} />
         <article className="mx-auto w-full max-w-[92rem] px-5 pb-24 pt-10 sm:px-8 lg:px-12 lg:pb-32 lg:pt-14">
           <Breadcrumbs
             items={[{ label: "Accueil", href: "/" }, { label: data.breadcrumbLabel }]}
+            currentPath={data.path}
           />
           <p className="eyebrow mt-10 text-bronze">{data.eyebrow}</p>
           <h1 className="display-lg mt-6 max-w-[22ch] font-display text-navy">{data.h1}</h1>
           <div aria-hidden="true" className="mt-8 h-px w-full max-w-[28rem] bg-gold" />
+
+          <section aria-label="Premier rendez-vous" className="mt-8 max-w-[52rem] border border-rule bg-paper/60 p-5 sm:p-7">
+            <p className="text-sm leading-relaxed text-ink/85">{BOOKING.firstAppointment}</p>
+            <BookingActions className="mt-4" contactHref={contactHref} />
+          </section>
 
           <div className="mt-10 grid grid-cols-12 gap-x-6">
             <div className="col-span-12 lg:col-span-8 xl:col-span-7">
@@ -154,9 +171,9 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
                 </p>
                 <Link
                   href={contactHref}
-                  className="eyebrow group mt-5 inline-flex w-full items-center justify-center gap-3 bg-navy px-5 py-3.5 text-ivory transition-colors duration-300 hover:bg-navytint"
+                  className="eyebrow group mt-5 inline-flex w-full items-center justify-center gap-3 border border-navy/35 px-5 py-3.5 text-center text-navy transition-colors duration-300 hover:bg-paper"
                 >
-                  {CTA.primary}
+                  {CTA.secondary}
                   <span
                     aria-hidden="true"
                     className="transition-transform duration-300 group-hover:translate-x-1"
@@ -168,45 +185,27 @@ export default function ExpertisePage({ data }: { data: ExpertisePageData }) {
             </aside>
           </div>
 
-          <div className="mt-20 bg-navy px-6 py-12 sm:px-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="eyebrow text-goldsoft">Soumettre un dossier</p>
-                <p className="mt-4 max-w-[42ch] font-display text-2xl leading-snug text-ivory">
-                  Exposez les faits, les parties et vos éventuelles échéances en quelques lignes.
-                </p>
-                <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-ivory/80">
-                  {SITE.confidentialityNotice}
-                </p>
-                <p className="mt-4 max-w-[66ch] text-xs leading-relaxed text-ivory/65">
-                  Les informations de cette page ont un caractère général et informatif&nbsp;; elles
-                  ne constituent ni une consultation juridique ni un conseil personnalisé, et leur
-                  lecture ne crée aucune relation avocat-client.
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
-                <Link
-                  href={contactHref}
-                  className="eyebrow group inline-flex items-center justify-center gap-3 bg-ivory px-7 py-4 text-navy transition-colors duration-300 hover:bg-goldsoft"
-                >
-                  {CTA.primary}
-                  <span
-                    aria-hidden="true"
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </Link>
-                <a
-                  href={SITE.phoneHref}
-                  aria-label={`Appeler le cabinet au ${SITE.phone}`}
-                  className="eyebrow inline-flex items-center justify-center border border-ivory/40 px-7 py-4 text-ivory transition-colors duration-300 hover:border-ivory hover:bg-ivory/10"
-                >
-                  {SITE.phone}
-                </a>
-              </div>
-            </div>
-          </div>
+          <section aria-label="Prendre rendez-vous ou exposer votre situation" className="mt-20 bg-navy px-6 py-12 sm:px-10">
+            <p className="eyebrow text-goldsoft">Soumettre un dossier</p>
+            <p className="mt-4 max-w-[42ch] font-display text-2xl leading-snug text-ivory">
+              Exposez les faits, les parties et vos éventuelles échéances en quelques lignes.
+            </p>
+            <p className="mt-3 max-w-[60ch] text-sm leading-relaxed text-ivory/80">
+              {SITE.confidentialityNotice}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-ivory/80">{BOOKING.firstAppointment}</p>
+            <BookingActions
+              className="mt-5"
+              contactHref={contactHref}
+              tone="dark"
+              phoneLabel={`Appeler · ${SITE.phone}`}
+            />
+            <p className="mt-6 max-w-[66ch] text-xs leading-relaxed text-ivory/65">
+              Les informations de cette page ont un caractère général et informatif&nbsp;; elles
+              ne constituent ni une consultation juridique ni un conseil personnalisé, et leur
+              lecture ne crée aucune relation avocat-client.
+            </p>
+          </section>
         </article>
       </main>
       <Footer />

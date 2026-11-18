@@ -1,18 +1,11 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CTA, SITE } from "@/content/site";
+import BookingCta from "@/components/BookingCta";
+import { SITE } from "@/content/site";
 
 /**
  * Sticky mobile conversion bar — visible on small screens only.
  * Desktop keeps the header CTA and in-section links.
  */
 export default function MobileCtaBar() {
-  const pathname = usePathname();
-  const ctaHref =
-    pathname === "/" ? "#contact" : pathname === "/contact" ? "#contact-form" : "/contact";
-
   return (
     <nav
       aria-label="Actions rapides"
@@ -26,12 +19,7 @@ export default function MobileCtaBar() {
         >
           Appeler
         </a>
-        <Link
-          href={ctaHref}
-          className="eyebrow flex items-center justify-center bg-ivory px-4 py-4 text-navy transition-colors active:bg-goldsoft"
-        >
-          {CTA.primary}
-        </Link>
+        <BookingCta className="eyebrow flex items-center justify-center bg-ivory px-4 py-4 text-center text-navy transition-colors active:bg-goldsoft" />
       </div>
     </nav>
   );
