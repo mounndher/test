@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EXTERNAL_PUBLICATIONS } from "@/content/articles";
+import { getPublications } from "@/lib/cms";
 import { Reveal, Section } from "@/components/ui";
 
 /**
@@ -7,7 +7,10 @@ import { Reveal, Section } from "@/components/ui";
  * Honest framing: 2020 employment-law articles, informational only, distinct from
  * the firm's current business-litigation practice (no claim of recent publishing).
  */
-export default function HomePublications() {
+export default async function HomePublications() {
+  const publications = await getPublications();
+  if (publications.length === 0) return null;
+
   return (
     <Section id="publications" index="06" label="Publications">
       <div className="grid grid-cols-12 gap-x-6 gap-y-8">
@@ -27,7 +30,7 @@ export default function HomePublications() {
 
       <Reveal delay={0.12} className="mt-12">
         <ul className="rule-double border-b border-rule">
-          {EXTERNAL_PUBLICATIONS.map((pub) => (
+          {publications.map((pub) => (
             <li key={pub.id} className="border-t border-rule py-5">
               <article className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                 <div className="min-w-0">

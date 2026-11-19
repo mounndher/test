@@ -2,16 +2,23 @@ import type { Metadata } from "next";
 import ExpertisePage from "@/components/ExpertisePage";
 import { buildPageMetadata } from "@/lib/seo";
 import { EXPERTISE_PAGE_CONTENT } from "@/content/expertise-pages";
+import { getExpertise, getPageByPath } from "@/lib/cms";
 
-const ENTRY = EXPERTISE_PAGE_CONTENT["conflits-entre-associes"];
+const FALLBACK = EXPERTISE_PAGE_CONTENT["conflits-entre-associes"];
+export const dynamic = "force-static";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: ENTRY.title,
-  description: ENTRY.description,
-  path: ENTRY.path,
-  type: "article",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageByPath(FALLBACK.path);
+  return buildPageMetadata({
+    title: page?.title ?? FALLBACK.title,
+    description: page?.description ?? FALLBACK.description,
+    path: FALLBACK.path,
+    type: "article",
+    noindex: page?.noindex ?? false,
+  });
+}
 
-export default function Page() {
-  return <ExpertisePage data={ENTRY.data} />;
+export default async function Page() {
+  const expertise = await getExpertise("conflits-entre-associes");
+  return <ExpertisePage data={expertise ?? FALLBACK.data} />;
 }

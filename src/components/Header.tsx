@@ -8,6 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 import { BookingLink } from "@/components/BookingCta";
 import { NAV, SITE } from "@/content/site";
 
+export type HeaderNavItem = { label: string; href: string };
+
 function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
   const main = tone === "dark" ? "text-navy" : "text-ivory";
   const sub = tone === "dark" ? "text-bronze" : "text-goldsoft";
@@ -33,7 +35,7 @@ function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
   );
 }
 
-export default function Header() {
+export default function Header({ nav = NAV as unknown as HeaderNavItem[] }: { nav?: HeaderNavItem[] } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -78,7 +80,7 @@ export default function Header() {
           aria-label="Navigation principale"
           className="hidden items-center gap-6 xl:flex xl:gap-8"
         >
-          {NAV.map((item) => {
+          {nav.map((item) => {
             const isActive = !item.href.includes("#") && pathname === item.href;
             return (
               <Link
@@ -123,7 +125,7 @@ export default function Header() {
           >
             <nav aria-label="Navigation mobile" className="px-5 pb-10 pt-2 sm:px-8">
               <ul>
-                {NAV.map((item, i) => {
+                {nav.map((item, i) => {
                   const isActive = !item.href.includes("#") && pathname === item.href;
                   return (
                     <li key={item.label} className="border-b border-rule">

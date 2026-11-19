@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AuditComment from "@/components/AuditComment";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderServer";
+import Footer from "@/components/FooterServer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { EXTERNAL_PUBLICATIONS } from "@/content/articles";
+import { getPublications } from "@/lib/cms";
 import BookingCta from "@/components/BookingCta";
 import { EXPERTISES, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
@@ -23,7 +23,9 @@ export const metadata: Metadata = buildPageMetadata({
   noindex: true,
 });
 
-export default function Page() {
+export default async function Page() {
+  const publications = await getPublications();
+
   return (
     <>
       <Header />
@@ -52,7 +54,7 @@ export default function Page() {
             Articles publiés sur Village de la Justice
           </h2>
           <ul className="rule-double mt-6 border-b border-rule">
-            {EXTERNAL_PUBLICATIONS.map((pub, i) => (
+            {publications.map((pub, i) => (
               <li key={pub.id} className="border-t border-rule first:border-t-0">
                 <article className="grid grid-cols-12 gap-x-4 gap-y-3 py-8 sm:py-9">
                   <div className="col-span-12 sm:col-span-2">

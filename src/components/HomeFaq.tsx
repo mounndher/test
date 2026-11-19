@@ -1,8 +1,11 @@
 import FaqList from "@/components/FaqList";
 import { Reveal, Section } from "@/components/ui";
-import { HOME_FAQS } from "@/content/site";
+import { getHomeFaqs } from "@/lib/cms";
 
-export default function HomeFaq() {
+export default async function HomeFaq() {
+  const faqs = await getHomeFaqs();
+  if (faqs.length === 0) return null;
+
   return (
     <Section id="faq" index="05" label="FAQ">
       <div className="grid grid-cols-12 gap-x-6 gap-y-8">
@@ -20,7 +23,7 @@ export default function HomeFaq() {
       </div>
 
       <Reveal delay={0.12} className="mt-14 max-w-[72ch]">
-        <FaqList items={HOME_FAQS} />
+        <FaqList items={faqs} />
         <p className="mt-8 text-xs leading-relaxed text-mute">
           Réponses fournies à titre d’information générale — chaque situation fait l’objet d’une
           analyse propre au vu des pièces.

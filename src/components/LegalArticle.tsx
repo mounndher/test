@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderServer";
+import Footer from "@/components/FooterServer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function LegalArticle({

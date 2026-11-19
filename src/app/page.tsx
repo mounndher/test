@@ -1,6 +1,6 @@
 import AuditComment from "@/components/AuditComment";
 import JsonLd from "@/components/JsonLd";
-import Header from "@/components/Header";
+import Header from "@/components/HeaderServer";
 import Hero from "@/components/Hero";
 import TrustStrip from "@/components/TrustStrip";
 import Expertises from "@/components/Expertises";
@@ -11,7 +11,7 @@ import HomeFaq from "@/components/HomeFaq";
 import HomePublications from "@/components/HomePublications";
 import PremierContact from "@/components/PremierContact";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Footer from "@/components/FooterServer";
 import { HOME_FAQS } from "@/content/site";
 
 const homeFaqJsonLd = {

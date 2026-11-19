@@ -6,7 +6,9 @@ import AuditComment from "@/components/AuditComment";
 import { BookingLink } from "@/components/BookingCta";
 import { CTA, FOOTER, SITE } from "@/content/site";
 
-export default function Footer() {
+export type FooterColumn = { title: string; items: { label: string; href: string }[] };
+
+export default function Footer({ columns = FOOTER.columns as unknown as FooterColumn[] }: { columns?: FooterColumn[] } = {}) {
   const year = new Date().getFullYear();
   const pathname = usePathname();
   const contactHref =
@@ -45,7 +47,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {FOOTER.columns.map((col) => (
+          {columns.map((col) => (
             <nav
               key={col.title}
               aria-label={col.title}

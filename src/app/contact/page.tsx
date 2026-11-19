@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AuditComment from "@/components/AuditComment";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/HeaderServer";
+import Footer from "@/components/FooterServer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/ContactForm";
 import FaqList from "@/components/FaqList";
