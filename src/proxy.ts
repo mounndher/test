@@ -21,7 +21,7 @@ export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasSessionCookie = request.cookies.has(ADMIN_COOKIE);
 
-  if (pathname.startsWith("/api/admin") && pathname !== "/api/admin/login" && !hasSessionCookie) {
+  if (pathname.startsWith("/api/admin") && !hasSessionCookie) {
     return NextResponse.json({ ok: false, error: "Authentification requise." }, { status: 401 });
   }
 
