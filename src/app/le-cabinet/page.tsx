@@ -10,6 +10,7 @@ import BookingCta from "@/components/BookingCta";
 import JsonLd from "@/components/JsonLd";
 import { ABOUT, EXPERTISES, MARD, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
+import { CABINET_FAQS as FAQS } from "@/content/page-faqs";
 
 const TITLE = "Maître Pierre Blexmann | Blexmann Avocats Paris";
 const DESCRIPTION =
@@ -23,21 +24,6 @@ export const metadata: Metadata = buildPageMetadata({
   type: "website",
 });
 
-const FAQS = [
-  {
-    q: "Quelles sont les modalités de rendez-vous proposées par le cabinet ?",
-    a: "Le cabinet reçoit sur rendez-vous au cabinet (Paris, 53 avenue Victor Hugo, 75116), en visioconférence ou par téléphone, selon vos contraintes géographiques et votre agenda.",
-  },
-  {
-    q: "Devant quelles juridictions le cabinet intervient-il ?",
-    a: "Établi à Paris, le cabinet représente ses clients devant les juridictions françaises compétentes en contentieux des affaires — notamment le tribunal des activités économiques de Paris, le tribunal judiciaire et la cour d’appel de Paris — ainsi que dans le cadre des modes alternatifs de règlement des différends (négociation, médiation, conciliation, arbitrage).",
-  },
-  {
-    q: "Comment sont encadrés l’acceptation d’un dossier et les honoraires ?",
-        // TODO [À CONFIRMER] : formulation sur les honoraires (présentée avant toute intervention) à valider avec l'avocat.
-    a: "Une relation avocat-client ne s’établit qu’après l’acceptation expresse du dossier par le cabinet, précédée notamment de la vérification de l’absence de conflit d’intérêts. Les modalités d’honoraires sont présentées avant toute intervention et formalisées par une convention écrite.",
-  },
-] as const;
 
 export default function Page() {
   const faqJsonLd = {

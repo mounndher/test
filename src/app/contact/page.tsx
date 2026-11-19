@@ -8,6 +8,7 @@ import FaqList from "@/components/FaqList";
 import JsonLd from "@/components/JsonLd";
 import { CONTACT, SITE } from "@/content/site";
 import { buildPageMetadata } from "@/lib/seo";
+import { CONTACT_FAQS as FAQS } from "@/content/page-faqs";
 
 const TITLE = "Contact — Blexmann Avocats | Paris 16e";
 const DESCRIPTION =
@@ -21,20 +22,6 @@ export const metadata: Metadata = buildPageMetadata({
   type: "website",
 });
 
-const FAQS = [
-  {
-    q: "Comment fonctionne l’envoi de ma demande ?",
-    a: "Le formulaire transmet votre demande directement au cabinet, par courriel, sans ouvrir votre messagerie. Merci de ne communiquer aucune pièce sensible lors de ce premier envoi.",
-  },
-  {
-    q: "Quelles modalités de rendez-vous sont proposées ?",
-    a: "Les consultations peuvent se tenir au cabinet (Paris, 53 avenue Victor Hugo, 75116), en visioconférence ou par téléphone, selon vos disponibilités et la nature du dossier.",
-  },
-  {
-    q: "L’envoi d’une demande crée-t-il automatiquement une relation avocat-client ?",
-    a: "Non. L’envoi d’un courriel de prise de contact ne crée pas, en soi, de relation avocat-client : celle-ci débute uniquement après l’acceptation expresse du dossier par le cabinet, à l’issue des vérifications d’usage — notamment l’absence de conflit d’intérêts — et la conclusion d’une convention d’honoraires.",
-  },
-] as const;
 
 export default function Page() {
   const faqJsonLd = {
