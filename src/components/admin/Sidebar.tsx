@@ -21,6 +21,7 @@ import {
 
 const LINKS = [
   { href: "/admin", label: "Tableau de bord", icon: LayoutDashboard, exact: true },
+  { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/settings", label: "Réglages du site", icon: Settings },
   { href: "/admin/homepage", label: "Page d’accueil", icon: Sparkles },
   { href: "/admin/expertises", label: "Pages d’expertise", icon: BookOpen },
