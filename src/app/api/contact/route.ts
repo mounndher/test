@@ -1,3 +1,5 @@
+import { db } from "@/db";
+import { contactMessages } from "@/db/schema";
 import { SITE } from "@/content/site";
 import { parseContactBody, validateContact, type ContactFields } from "@/lib/contact";
 
@@ -9,10 +11,6 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 5;
 const MAX_BODY_BYTES = 20_000;
 
-/**
- * Basic in-memory rate limiter (per server instance). It stops casual abuse;
- * for a distributed deployment, back it with a shared store (e.g. Upstash).
- */
 const hits = new Map<string, number[]>();
 
 function isRateLimited(ip: string): boolean {
@@ -115,16 +113,31 @@ export async function POST(request: Request) {
   }
 
   const { trap, ...values } = parseContactBody(json);
-
-  // Honeypot: real visitors never see this field. Pretend success, send nothing.
   if (trap.trim() !== "") return reply({ ok: true });
 
   const errors = validateContact(values);
   if (Object.keys(errors).length > 0) return reply({ ok: false, errors }, 400);
 
+  let savedToDb = false;
+  try {
+    await db.insert(contactMessages).values({
+      name: values.nom.trim(),
+      email: values.email.trim(),
+      phone: values.telephone.trim() || null,
+      company: values.societe.trim() || null,
+      subject: values.sujet,
+      mode: values.appointmentMode,
+      message: values.message.trim(),
+      status: "unread",
+    });
+    savedToDb = true;
+  } catch (dbErr) {
+    console.error("[contact] Database insert failed:", dbErr);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.error("[contact] RESEND_API_KEY is not configured");
+    if (savedToDb) return reply({ ok: true });
     return reply(
       { ok: false, error: `L’envoi en ligne est momentanément indisponible. ${fallback}` },
       503,
@@ -139,30 +152,16 @@ export async function POST(request: Request) {
     const response = await fetch(RESEND_URL, {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        reply_to: values.email.trim(),
-        subject,
-        text,
-        html,
-      }),
+      body: JSON.stringify({ from, to: [to], reply_to: values.email.trim(), subject, text, html }),
       signal: AbortSignal.timeout(10_000),
     });
 
-    if (!response.ok) {
-      console.error(`[contact] Resend responded with HTTP ${response.status}`);
-      return reply(
-        { ok: false, error: `Votre demande n’a pas pu être envoyée. ${fallback}` },
-        502,
-      );
+    if (!response.ok && !savedToDb) {
+      return reply({ ok: false, error: `Votre demande n’a pas pu être envoyée. ${fallback}` }, 502);
     }
     return reply({ ok: true });
-  } catch (error) {
-    console.error("[contact] Resend request failed", error instanceof Error ? error.name : error);
-    return reply(
-      { ok: false, error: `Votre demande n’a pas pu être envoyée. ${fallback}` },
-      502,
-    );
+  } catch {
+    if (savedToDb) return reply({ ok: true });
+    return reply({ ok: false, error: `Votre demande n’a pas pu être envoyée. ${fallback}` }, 502);
   }
 }

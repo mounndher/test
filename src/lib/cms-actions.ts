@@ -574,3 +574,32 @@ export async function uploadMediaAction(formData: FormData) {
   await log(admin.adminId, "media.create", "media", null, { url });
   refresh();
 }
+/* ───────────────────────────── Messages de contact ───────────────────────────── */
+
+export async function readMessages() {
+  return db
+    .select()
+    .from(contactMessages)
+    .orderBy(sql`${contactMessages.createdAt} desc`);
+}
+
+export async function toggleMessageStatusAction(formData: FormData) {
+  const admin = await requireAdmin();
+  const id = Number(formData.get("id"));
+  const nextStatus = text(formData.get("status")) === "read" ? "read" : "unread";
+  if (!id) return;
+  await db.update(contactMessages).set({ status: nextStatus }).where(eq(contactMessages.id, id));
+  await log(admin.adminId, "message.status", "contact_messages", id, { status: nextStatus });
+  revalidatePath("/admin/messages");
+  revalidatePath("/admin");
+}
+
+export async function deleteMessageAction(formData: FormData) {
+  const admin = await requireAdmin();
+  const id = Number(formData.get("id"));
+  if (!id) return;
+  await db.delete(contactMessages).where(eq(contactMessages.id, id));
+  await log(admin.adminId, "message.delete", "contact_messages", id, {});
+  revalidatePath("/admin/messages");
+  revalidatePath("/admin");
+}

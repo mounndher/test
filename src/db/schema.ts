@@ -223,7 +223,20 @@ export const activityLog = pgTable("activity_log", {
   details: jsonb("details"),
   createdAt: timestamps.createdAt,
 }, (table) => [index("activity_log_admin_idx").on(table.adminId)]);
+export const contactMessages = pgTable("contact_messages", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  company: text("company"),
+  subject: text("subject").notNull(),
+  mode: text("mode"),
+  message: text("message").notNull(),
+  status: text("status").notNull().default("unread"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
 
+export type ContactMessage = typeof contactMessages.$inferSelect;
 export type Admin = typeof admins.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type Page = typeof pages.$inferSelect;
