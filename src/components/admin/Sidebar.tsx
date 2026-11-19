@@ -11,6 +11,7 @@ import {
   History,
   Image as ImageIcon,
   LayoutDashboard,
+  Mail,
   Menu,
   Newspaper,
   Settings,
@@ -60,8 +61,8 @@ export default function Sidebar({
             aria-current={active ? "page" : undefined}
             className={`flex items-center gap-3 px-3 py-2.5 text-[0.8rem] transition-colors ${
               active
-                ? "bg-[#111827] text-[#F7F5F0]"
-                : "text-[#3F3F3A] hover:bg-[#EFEBE2] hover:text-[#111827]"
+                ? "bg-[#1E293B] text-[#F7F5F0]"
+                : "text-[#B9BEC7] hover:bg-[#1E293B]/60 hover:text-white"
             }`}
           >
             <Icon size={15} strokeWidth={1.6} aria-hidden="true" />
@@ -90,7 +91,6 @@ export default function Sidebar({
 
   return (
     <>
-      {/* Barre mobile */}
       <div className="flex items-center justify-between border-b border-[#E3DED4] bg-white px-4 py-3 lg:hidden">
         <p className="font-display text-base uppercase tracking-[0.14em] text-[#111827]">Blexmann Avocats</p>
         <button
@@ -105,7 +105,6 @@ export default function Sidebar({
         </button>
       </div>
 
-      {/* Sidebar desktop + panneau mobile */}
       <aside
         id="admin-sidebar"
         className={`${open ? "flex" : "hidden"} w-full flex-col bg-[#111827] py-6 lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-64 lg:shrink-0`}
