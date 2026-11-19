@@ -13,6 +13,7 @@ import {
   pages,
   publications,
   revisions,
+  contactMessages,
   sections,
   siteSettings,
 } from "@/db/schema";
