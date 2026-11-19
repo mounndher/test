@@ -7,7 +7,11 @@ import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { BookingLink } from "@/components/BookingCta";
 import { NAV, SITE } from "@/content/site";
-
+useEffect(() => {
+    if (typeof window !== "undefined" && !window.location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [pathname]);
 export type HeaderNavItem = { label: string; href: string };
 
 function Wordmark({ tone = "dark" }: { tone?: "dark" | "light" }) {
@@ -86,6 +90,7 @@ export default function Header({ nav = NAV as unknown as HeaderNavItem[] }: { na
               <Link
                 key={item.label}
                 href={resolveNavHref(item.href)}
+                scroll={true}
                 aria-current={isActive ? "page" : undefined}
                 className={`eyebrow link-underline whitespace-nowrap transition-colors hover:text-navy focus-visible:text-navy ${
                   isActive ? "text-navy" : "text-ink/80"

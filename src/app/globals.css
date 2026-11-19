@@ -18,7 +18,11 @@
   --font-display: var(--font-playfair), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
-
+html {
+    scroll-behavior: auto;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
 @layer base {
   html {
     scroll-behavior: smooth;
